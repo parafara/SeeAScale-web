@@ -1,5 +1,5 @@
 # 🔎 See A Scale
-과학 수행평가 See A Scale 서버 레포지토리
+과학 수행평가 See A Scale 프론트엔드 레포지토리
 
 ## Commit Convention
 |Type|Description|
