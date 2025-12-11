@@ -1,40 +1,21 @@
-:root {
-    --Basic-Color-White: #FFF;
-    --Basic-Color-Black: #000;
-    --Basic-Color-Gray: #B2B2B2;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 32px;
-    background: var(--Basic-Color-White);
+    padding: 12px 32px;
     box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.10);
 }
 
-.logo {
-    width: 330px;
-    height: 50px;
-}
-
-.logoButton {
-    display: flex;
-    justify-content: center;
-    padding: 8px 16px;
+.logoWraper {
+    padding: 4px 16px;
     border-radius: 16px;
-    border: 1px solid var(--Basic-Color-Gray);
-    background: var(--Basic-Color-White);
+    border: 1px solid #B2B2B2;
 }
 
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.accountWrapper {
     padding: 16px 24px;
-    color: var(--Basic-Color-Black);
-    font-weight: 600;
     border-radius: 16px;
-    border: 1px solid var(--Basic-Color-Gray);
-    background: var(--Basic-Color-White);
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: 1px solid #B2B2B2;
 }
