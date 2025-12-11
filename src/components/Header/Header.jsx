@@ -1,4 +1,4 @@
-import VerticalLogo from "@assets/VerticalLogo.svg?react"
+import VerticalLogo from "@assets/logos/VerticalLogo.svg?react"
 import styles from "@components/Header/Header.module.css"
 
 function Header() {
