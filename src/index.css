@@ -12,13 +12,14 @@ body {
 a {
     text-decoration: none;
     color: #000;
+    background-color: #FFF;
 }
 
 button {
     all: unset;
     display: block;
-    background-color: #FFF;
     cursor: pointer;
+    background-color: #FFF;
 }
 
 h6 {

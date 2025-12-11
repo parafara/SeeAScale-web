@@ -8,9 +8,9 @@ function Header() {
             <a className={styles.logoWraper} href="/">
                 <VerticalLogo />
             </a>
-            <a className={styles.accountWrapper} href="/login">
+            <button className={styles.accountWrapper} href="/login">
                 {"로그인"}
-            </a>
+            </button>
         </header>
     )
 }

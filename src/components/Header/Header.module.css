@@ -10,6 +10,11 @@
     padding: 4px 16px;
     border-radius: 16px;
     border: 1px solid #B2B2B2;
+    transition: filter 0.15s ease;
+}
+
+.logoWraper:hover {
+    filter: brightness(0.9);
 }
 
 .accountWrapper {
@@ -18,4 +23,9 @@
     font-size: 1.2rem;
     font-weight: 500;
     border: 1px solid #B2B2B2;
+    transition: filter 0.15s ease;
+}
+
+.accountWrapper:hover {
+    filter: brightness(0.9);
 }
