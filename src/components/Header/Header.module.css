@@ -2,30 +2,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 32px;
+    padding: 1rem 2rem;
     border-bottom: 1px solid #B2B2B2;
 }
 
 .logo {
-    padding: 4px 16px;
-    border-radius: 16px;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
     border: 1px solid #B2B2B2;
-    transition: filter 0.15s ease;
-}
-
-.logo:hover {
-    filter: brightness(0.9);
 }
 
 .account {
-    padding: 16px 24px;
-    border-radius: 16px;
-    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.25rem;
     font-weight: 500;
     border: 1px solid #B2B2B2;
-    transition: filter 0.15s ease;
-}
-
-.account:hover {
-    filter: brightness(0.9);
 }
