@@ -1,25 +1,31 @@
-import { useCallback } from "react";
+import { useState, useCallback } from "react";
 import api from "@api/axios";
 
 export default function useUser() {
+    const [name, setName] = useState();
+
     const logIn = useCallback(async (email, password) => {
         const payload = { email, password };
         try {
             const response = await api.post('/account/login', payload);
-            return { success: true, data: response.data };
-        } catch (error) {
-            const status = error.response?.status;
-            const detail = error.response?.data?.detail;
-            
-            if (status === 422) {
-                return { success: false, errorCode: 'INVALID_INPUT' };
-            } else if (status === 401) {
-                return { success: false, errorCode: detail };
-            }
-            
-            return { success: false, errorCode: 'UNKNOWN_ERROR' };
+            setName(response.data.name);
+            return {name: response.data.name};
+        }
+        catch (e) {
+            return e;
         }
     }, []);
 
-    return { logIn };
+    const myName = useCallback(async () => {
+        try {
+            const response = await api.get('/account/my-name');
+            setName(response.data.name);
+            return;
+        }
+        catch (e) {
+            return e;
+        }
+    }, []);
+
+    return { name, logIn, myName };
 }

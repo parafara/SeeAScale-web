@@ -1,102 +1,81 @@
-import { useState, useCallback, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useUser from '@hooks/useUser';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import Modal from '@components/Modal';
 import sty from '@components/LogIn/LogIn.module.css';
 
-const ERROR_MESSAGES = {
-    INVALID_INPUT: '잘못된 이메일 혹은 비밀번호 양식입니다.',
-    UNREGISTERED: '등록되지 않은 메일 주소입니다.',
-    INCORRECT_PASSWORD: '비밀번호가 잘못되었습니다.',
-    UNKNOWN_ERROR: '로그인 중 오류가 발생했습니다.'
-};
-
 export default function LogIn() {
     const navigate = useNavigate();
-    const { logIn } = useUser();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    
-    const emailInputRef = useRef(null);
-    const passwordInputRef = useRef(null);
+    const {logIn} = useOutletContext();
+    const [isFetching, setIsFetching] = useState(false);
+    const [emailValue, setEmailValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
+    const [emailInput, passwordInput, submitButton] = [useRef(), useRef(), useRef()];
 
-    const handleInputChange = useCallback((setter) => (e) => setter(e.target.value), []);
-    
-    const handleSubmit = useCallback(async (e) => {
+    const emailInputHandler = (e) => {
+        setEmailValue(e.target.value);
+    }
+
+    const passwordInputHandler = (e) => {
+        setPasswordValue(e.target.value);
+    }
+    const submitForm = (e) => {
         e.preventDefault();
-        setIsLoading(true);
-
-        try {
-            const result = await logIn(email, password);
-            
-            if (result.success) {
+        setIsFetching(true);
+        logIn(emailValue, passwordValue)
+        .then((e) => {
+            const status = e?.response?.status;
+            const name = e?.name;
+            if (status === 422) {
+                setPasswordValue('');
+                emailInput.current.focus();
+                alert('이메일 주소나 비밀번호 양식이 올바르지 않습니다. 다시 입력해주세요.\n(비밀번호: 영어 대소문자, 숫자, 특수문자 !@#$_.?-, 8자리 이상');
+            }
+            else if (status === 401) {
+                if (e.response.data.detail === 'UNREGISTERED') {
+                    emailInput.current.focus();
+                    alert('등록된 사용자가 아닙니다. 이메일 주소를 다시 입력하시거나, 회원가입 후 이용하여 주세요.');
+                }
+                else if (e.response.data.detail === 'INCORRECT_PASSWORD') {
+                    setPasswordValue('');
+                    passwordInput.current.focus();
+                    alert('올바르지 않은 비밀번호입니다. 다시 입력해주세요.');
+                }
+            }
+            else if (name !== null) {
+                alert(`환영합니다, ${name}님`);
                 navigate('/');
-                return;
             }
-
-            const { errorCode } = result;
-            const message = ERROR_MESSAGES[errorCode] || ERROR_MESSAGES.UNKNOWN_ERROR;
-            alert(message);
-
-            // 에러 타입별 입력 필드 초기화 및 포커스
-            if (errorCode === 'UNREGISTERED') {
-                setEmail('');
-                setPassword('');
-                emailInputRef.current?.focus();
-            } else if (errorCode === 'INCORRECT_PASSWORD') {
-                setPassword('');
-                passwordInputRef.current?.focus();
-            }
-        } finally {
-            setIsLoading(false);
-        }
-    }, []);
+        })
+        .finally(() => {
+            setIsFetching(false);
+        });
+    };
 
     return (
         <Modal onClose={() => navigate('/')}>
-            <form onSubmit={handleSubmit}>
+            <form className={sty.form} onSubmit={submitForm}>
                 <h1 className={sty.title}>로그인</h1>
-                <div className={sty.inputList}>
-                    <input 
-                        ref={emailInputRef}
-                        className={sty.input} 
-                        type="email" 
-                        value={email} 
-                        onChange={handleInputChange(setEmail)} 
-                        placeholder="이메일" 
-                        disabled={isLoading}
-                        required
-                    />
-                    <input 
-                        ref={passwordInputRef}
-                        className={sty.input} 
-                        type="password" 
-                        value={password} 
-                        onChange={handleInputChange(setPassword)} 
-                        placeholder="비밀번호" 
-                        disabled={isLoading}
-                        required
-                    />
-                </div>
-                <div className={sty.buttonBox}>
-                    <button 
-                        className={sty.signup} 
-                        tabIndex={-1} 
-                        onClick={() => navigate('/preregister')}
-                        disabled={isLoading}
-                        type="button"
-                    >
-                        회원가입
-                    </button>
-                    <button 
-                        className={sty.login} 
-                        type="submit"
-                        disabled={isLoading}
-                    >
-                        {isLoading ? '로그인 중...' : '로그인'}
-                    </button>
-                </div>
+                <input 
+                    className={sty.input}
+                    ref={emailInput}
+                    type="email"
+                    value={emailValue}
+                    placeholder="이메일"
+                    onChange={emailInputHandler}
+                    autoFocus
+                    required 
+                />
+                <input 
+                    className={sty.input}
+                    ref={passwordInput}
+                    type="password"
+                    value={passwordValue}
+                    placeholder="비밀번호"
+                    onChange={passwordInputHandler}
+                    required 
+                />
+                <button ref={submitButton} className={sty.login} type="submit">{isFetching ? "로그인 중..." : "로그인"}</button>
+                <Link className={sty.signup} to='/preregister'>회원가입</Link>
             </form>
         </Modal>
     )
