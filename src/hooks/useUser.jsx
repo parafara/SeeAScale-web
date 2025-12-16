@@ -4,7 +4,7 @@ import api from "@api/axios";
 export default function useUser() {
     const [name, setName] = useState(null);
 
-    const logIn = useCallback(async (email, password) => {
+    const fetchLogIn = useCallback(async (email, password) => {
         const payload = { email, password };
         try {
             const response = await api.post('/account/login', payload);
@@ -16,7 +16,12 @@ export default function useUser() {
         }
     }, []);
 
-    const myName = useCallback(async () => {
+    const fetchLogOut = useCallback(async () => {
+        await api.post('/account/logout');
+        setName(null);
+    }, []);
+
+    const fetchMyName = useCallback(async () => {
         try {
             const response = await api.get('/account/my-name');
             setName(response.data.name);
@@ -27,5 +32,5 @@ export default function useUser() {
         }
     }, []);
 
-    return { name, logIn, myName };
+    return [name, fetchLogIn, fetchLogOut, fetchMyName];
 }

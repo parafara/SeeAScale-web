@@ -5,16 +5,16 @@ import Logo from '@assets/VerticalLogo.svg?react';
 import sty from '@components/Header/Header.module.css';
 
 function Header() {
-    const {name, myName, logIn} = useUser();
+    const [name, fetchLogIn, fetchLogOut, fetchMyName] = useUser();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        myName().then(() => setLoading(false));
+        fetchMyName().then(() => setLoading(false));
     }, []);
 
     return (
         <>
-            <Outlet context={{logIn: logIn}} />
+            <Outlet context={{fetchLogIn: fetchLogIn, fetchLogOut: fetchLogOut}} />
             <header className={sty.header}>
                 <Link to='/' className={sty.logo}><Logo/></Link>
                 <Link to={loading ? null : (name ? 'logout' : 'login')} className={sty.account}>

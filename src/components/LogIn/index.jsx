@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import Modal from '@components/Modal';
 import sty from '@components/LogIn/LogIn.module.css';
 
 export default function LogIn() {
     const navigate = useNavigate();
-    const {logIn} = useOutletContext();
+    const {fetchLogIn} = useOutletContext();
     const [isFetching, setIsFetching] = useState(false);
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
@@ -21,8 +21,11 @@ export default function LogIn() {
     
     const submitForm = (e) => {
         e.preventDefault();
+
+        if (isFetching) return;
         setIsFetching(true);
-        logIn(emailValue, passwordValue)
+        
+        fetchLogIn(emailValue, passwordValue)
         .then((e) => {
             const status = e?.response?.status;
             const name = e?.name;
@@ -53,7 +56,7 @@ export default function LogIn() {
     };
 
     return (
-        <Modal onClose={() => navigate('/')}>
+        <Modal>
             <form className={sty.form} onSubmit={submitForm}>
                 <h1 className={sty.title}>로그인</h1>
                 <input 
