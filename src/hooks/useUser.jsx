@@ -9,10 +9,10 @@ export default function useUser() {
         try {
             const response = await api.post('/account/login', payload);
             setName(response.data.name);
-            return {name: response.data.name};
+            return response;
         }
         catch (e) {
-            return e;
+            return e.response;
         }
     }, []);
 
@@ -25,10 +25,10 @@ export default function useUser() {
         try {
             const response = await api.get('/account/my-name');
             setName(response.data.name);
-            return;
+            return response;
         }
         catch (e) {
-            return e;
+            return e.response;
         }
     }, []);
 

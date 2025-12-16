@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    height: 75%;
 }
 
 .title {
@@ -17,6 +18,14 @@
     margin: 0.125rem 0;
     border: 1px solid #B2B2B2;
     border-radius: 0.5rem;
+}
+
+.invalidInput {
+    border-color: #F44336;
+}
+
+.validInput {
+    border-color: #4CAF50;
 }
 
 .login {
