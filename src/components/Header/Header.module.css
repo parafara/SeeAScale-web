@@ -1,21 +1,21 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #B2B2B2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #B2B2B2;
 }
 
 .logo {
-    padding: 0.25rem 1rem;
-    border-radius: 1rem;
-    border: 1px solid #B2B2B2;
+  padding: 0.25rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #B2B2B2;
 }
 
 .account {
-    padding: 1rem 1.5rem;
-    border-radius: 1rem;
-    font-size: 1.25rem;
-    font-weight: 500;
-    border: 1px solid #B2B2B2;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border: 1px solid #B2B2B2;
 }

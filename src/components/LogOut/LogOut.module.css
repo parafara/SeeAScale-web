@@ -1,16 +1,16 @@
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 .buttonWrapper {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem;
 }
 
 .button {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid #B2B2B2;
-    border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #B2B2B2;
+  border-radius: 0.5rem;
 }

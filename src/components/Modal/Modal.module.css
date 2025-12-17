@@ -1,32 +1,32 @@
 .background {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    padding: 10vh 15vw;
-    background-color: rgba(0, 0, 0, 0.4);
-    animation: fadeIn 0.25s ease-out forwards;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  padding: 10vh 15vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.25s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 .modal {
-    height: 100%;
-    padding: 2rem;
-    border-radius: 1rem;
-    background-color: white;
+  height: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: white;
 }
 
 .closeBar {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .content {
-    height: calc(100% - 1.25rem);
-    overflow-x: hidden;
-    overflow-y: auto;
+  height: calc(100% - 1.25rem);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
