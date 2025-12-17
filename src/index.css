@@ -7,7 +7,7 @@
 html {
   font-family: 'Paperlogy';
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 a {
@@ -31,4 +31,19 @@ button {
 
 button:hover {
   filter: brightness(0.9);
+}
+
+
+:root {
+  --white: #fff;
+  --black: #000;
+  --block-hover: #707070;
+  --gray: #B2B2B2;
+  --light-gray: #E6E6E6;
+  --red-1: #F9A7A7;
+  --red-2: #F68E8E;
+  --red-3: #EF2B2B;
+  --blue-1: #B6D3FA;
+  --blue-2: #81B1F5;
+  --blue-3: #2B7CEF;
 }
