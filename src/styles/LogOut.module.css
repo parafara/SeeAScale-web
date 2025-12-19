@@ -1,0 +1,31 @@
+.contentWrapper {
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  display: flex;
+  width: 10rem;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  border: 1px solid var(--gray);
+}
+
+.confirmButton {
+  background: var(--blue-2);
+}
+
+.cancelButton {
+  background: var(--light-gray);
+}

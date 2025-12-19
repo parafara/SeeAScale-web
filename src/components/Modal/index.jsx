@@ -24,5 +24,7 @@ export default function Modal({children, onCanceled}) {
 }
 
 import LogInComponent from '@components/Modal/LogIn';
+import LogOutComponent from '@components/Modal/LogOut';
 
 export const LogIn = LogInComponent;
+export const LogOut = LogOutComponent;

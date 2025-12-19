@@ -36,10 +36,20 @@ export default function useUser(){
     }
     catch (e) {
       setUsername(null);
-      console.log(e);
       return returnMacro(e.response)
     }
   }, []);
 
-  return {username, fetchLogIn, fetchMyName}
+  const fetchLogOut = useCallback(async () => {
+    try {
+      const response = await api.post('/account/logout');
+      setUsername(null);
+      return returnMacro(response)
+    }
+    catch (e) {
+      return returnMacro(e.response)
+    }
+  }, []);
+
+  return {username, fetchLogIn, fetchLogOut, fetchMyName}
 }
