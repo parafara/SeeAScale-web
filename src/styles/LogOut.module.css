@@ -7,6 +7,10 @@
   gap: 1rem;
 }
 
+.title {
+  font-weight: 600;
+}
+
 .buttonWrapper {
   display: flex;
   gap: 1rem;
@@ -20,6 +24,7 @@
   align-items: center;
   border-radius: 1rem;
   border: 1px solid var(--gray);
+  font-weight: 600;
 }
 
 .confirmButton {
