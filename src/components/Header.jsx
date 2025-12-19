@@ -15,7 +15,7 @@ export default function Header({props: {username, fetchMyName}}) {
       <Link className={sty.logo} to='/'>
         <Logo />
       </Link>
-      <Link className={sty.account} to={loading ? null : (username === null ? '/login' : '/logout')}>
+      <Link className={sty.accountButton} to={loading ? null : (username === null ? '/login' : '/logout')}>
         {loading ? '로딩중...' : (username ?? '로그인')}
       </Link>
     </header>

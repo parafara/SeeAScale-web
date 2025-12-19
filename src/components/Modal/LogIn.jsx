@@ -9,27 +9,20 @@ export default function LogIn() {
   const navigate = useNavigate();
   const {fetchLogIn} = useOutletContext();
   const [isFetching, setIsFetching] = useState(false);
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [validEmail, setValidEmail, validPassword, setValidPassword] = [...useState(null), ...useState(null)];
-  const [emailInput, passwordInput, submitButton] = [useRef(), useRef(), useRef()];
+  const [emailValue, setEmailValue] = useState(null);
+  const [passwordValue, setPasswordValue] = useState(null);
+  const [emailInput, passwordInput] = [useRef(), useRef()];
   
-  const emailInputHandler = (e) => {
-    const value = e.target.value;
-    setValidEmail(emailRegex.test(value));
-    setEmailValue(value);
-  }
+  const emailInputHandler = (e) => setEmailValue(e.target.value);
+  const passwordInputHandler = (e) => setPasswordValue(e.target.value);
 
-  const passwordInputHandler = (e) => {
-    const value = e.target.value;
-    setValidPassword(passwordRegex.test(value));
-    setPasswordValue(value);
-  }
+  const isEmailValid = () => emailRegex.test(emailValue);
+  const isPasswordValid = () => passwordRegex.test(passwordValue);
   
   const submitForm = (e) => {
     e.preventDefault();
     
-    if (!validEmail || !validPassword ) return;
+    if (!isEmailValid() || !isPasswordValid()) return;
     if (isFetching) return;
     setIsFetching(true);
     
@@ -55,9 +48,7 @@ export default function LogIn() {
         alert('로그인 요청 중 문제가 발생하였습니다.');
       }
     })
-    .finally(() => {
-      setIsFetching(false);
-    });
+    .finally(() => setIsFetching(false));
   };
 
   return (
@@ -65,45 +56,24 @@ export default function LogIn() {
       <form className={sty.form} onSubmit={submitForm}>
         <h1 className={sty.title}>로그인</h1>
         <input 
-          className={`${
-            sty.input
-          } ${
-            validEmail === null ? null : (validEmail ? sty.validInput : sty.invalidInput)
-          }`}
+          className={`${sty.input} ${emailValue && (isEmailValid() ? sty.validInput : sty.invalidInput)}`}
           ref={emailInput}
-          type="email"
-          value={emailValue}
-          placeholder="이메일"
-          onChange={emailInputHandler}
-          autoFocus
-          required 
+          type="email" value={emailValue ?? ''} onChange={emailInputHandler} placeholder="이메일"
+          autoFocus required 
         />
         <input 
-          className={`${
-            sty.input
-          } ${
-            validPassword === null ? null : (validPassword ? sty.validInput : sty.invalidInput)
-          }`}
+          className={`${sty.input} ${passwordValue && (isPasswordValid() ? sty.validInput : sty.invalidInput)}`}
           ref={passwordInput}
-          type="password"
-          value={passwordValue}
-          placeholder="비밀번호"
-          onChange={passwordInputHandler}
+          type="password" value={passwordValue ?? ''} onChange={passwordInputHandler} placeholder="비밀번호"
           required 
         />
-        <button
-          ref={submitButton}
-          className=
-            {`${
-              sty.submitButton
-            } ${
-              validEmail === null || validPassword === null ? null : (validEmail && validPassword ? sty.validButton : sty.invalidButton)
-            }`}
-          type="submit"
-        >
-            {isFetching ? "로그인 중..." : "로그인"}
+        <button className={
+          `${sty.submitButton} ${(emailValue || passwordValue) && (isEmailValid() && isPasswordValid() ? sty.validsubmitButton : sty.invalidsubmitButton)}`
+        } 
+        type="submit">
+          {isFetching ? "로그인 중..." : "로그인"}
         </button>
-        <Link className={sty.signup} to='/preregister'>회원가입</Link>
+        <Link className={sty.signUpButton} to='/preregister'>회원가입</Link>
       </form>
     </Modal>
   )

@@ -43,15 +43,15 @@
   font-weight: 600;
 }
 
-.validButton {
+.validsubmitButton {
   background: var(--blue-2);
 }
 
-.invalidButton {
+.invalidsubmitButton {
   background: var(--red-2);
 }
 
-.signup {
+.signUpButton {
   padding: 0.5rem;
   border-radius: 1rem;
 }
