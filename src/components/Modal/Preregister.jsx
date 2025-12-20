@@ -7,7 +7,6 @@ export default function Preregister() {
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   const nameRegex = /^[가-힣A-Za-z0-9_]{1,32}$/;
   const passwordRegex = /^[A-Za-z0-9!@#$_.?-]{8,}$/;
-  const navigate = useNavigate();
   const {fetchPreregister} = useOutletContext();
   const [isFetching, setIsFetching] = useState(false);
   const [isPreregistered, setIsPreregistered] = useState(false);

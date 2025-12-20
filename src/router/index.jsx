@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '@pages/Home';
-import { LogIn, LogOut, Preregister } from '@components/Modal';
+import { LogIn, LogOut, Preregister, SignUp } from '@components/Modal';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/preregister',
         element: <Preregister />
+      },
+      {
+        path: '/signup',
+        element: <SignUp />
       },
     ]
   }

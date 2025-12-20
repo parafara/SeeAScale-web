@@ -58,13 +58,27 @@ export default function useUser(){
         name: name,
         password: password
       };
-      const response = await api.post('account/preregister', payload)
+      const response = await api.post('/account/preregister', payload)
       return returnMacro(response) 
+    }
+    catch (e) {
+      return returnMacro(e.response)
+    }
+  }, []);
+
+  const fetchSignUp = useCallback(async (pretoken) => {
+    try {
+      const payload = {
+        signUpToken: pretoken
+      };
+      const response = await api.post('/account', payload)
+      setUsername(response.data.name);
+      return returnMacro(response)
     }
     catch (e) {
       return returnMacro(e.response)
     }
   }, [])
 
-  return {username, fetchLogIn, fetchLogOut, fetchMyName, fetchPreregister}
+  return {username, fetchLogIn, fetchLogOut, fetchMyName, fetchPreregister, fetchSignUp}
 }
