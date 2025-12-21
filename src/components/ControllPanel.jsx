@@ -1,31 +1,23 @@
 import PlusSymbol from "@assets/PlusSymbol.svg?react"
 import RefreshSymbol from "@assets/RefreshSymbol.svg?react"
 import css from '@styles/ControllPanel.module.css';
+import { prefixs } from "@utils/constant";
 
-export default () => {
-  const prefixs = [
-    {title: "mm (10³)", name: '미리미터'},
-    {title: "cm (10⁻²)", name: '센티미터'},
-    {title: "dm (10⁻¹)", name: '데시미터'},
-    {title: "m (10⁰)", name: '미터'},
-    {title: "dam (10¹)", name: '데카미터'},
-    {title: "hm (10²)", name: '헥토미터'},
-    {title: "km (10³)", name: '킬로미터'},
-  ]
+export default ({current}) => {
 
   return (
     <div className={css.controllPanel}>
       <div className={css.prefixList}>
-        {prefixs.map((v, i)=>(
+        {prefixs.slice(current + 7, current + 14).map((v, i)=>(
           <button className={css.prefix} key={i}>
-            <h3>{v.title}</h3>
-            <p>{v.name}</p>
+            <h3>{`${v.prefix}m (10^${v.exponent})`}</h3>
+            <p>{`${v.name}미터`}</p>
           </button>
         ))}
       </div>
       <div className={css.buttonList}>
-        <button className={css.button}><PlusSymbol /></button>
         <button className={css.button}><RefreshSymbol /></button>
+        <button className={css.button}><PlusSymbol /></button>
       </div>
     </div>
   )

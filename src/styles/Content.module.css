@@ -22,8 +22,10 @@
 .thingList {
   display: flex;
   align-items: flex-end;
+  width: 100%;
   flex: 1 0 0;
   align-self: stretch;
+  overflow: hidden;
 }
 
 .thing {
@@ -33,6 +35,11 @@
   align-items: center;
   gap: 8px;
   flex: 1 0 0;
+  transition: ease-out 0.3s filter;
+}
+
+.thing:hover {
+  filter: brightness(0.9);
 }
 
 .thingImage {
