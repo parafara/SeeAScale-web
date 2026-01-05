@@ -6,16 +6,10 @@ import css from '@styles/Content.module.css';
 import ControllPanel from '@components/ControllPanel';
 import { API_SERVER_URL, prefixs } from '@utils/constant.jsx';
 
-// 1. 데이터 불러와서 물체 표시
-// 2. 좌우 이동
-// 3. 접두어로 이동
-// 4. 물체 등록
-// 5. 새로고침
-
 export default () => {
-  const {current, data, init, moveRight, moveLeft} = useThing();
+  const {current, data, init, moveRight, moveLeft, getCurrentPrefix} = useThing();
 
-  useEffect(() => {init();}, [])
+  useEffect(() => {init();}, []);
   
   return (
     <>
@@ -30,7 +24,7 @@ export default () => {
           <ArrowSymbol style={{transform: 'scaleX(-1)'}} />
         </button>
       </main>
-      <ControllPanel current={current.prefix} />
+      <ControllPanel current={data[current.item]?.prefix ?? 0} />
     </>
   )
 }

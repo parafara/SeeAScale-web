@@ -3,8 +3,10 @@ import RefreshSymbol from "@assets/RefreshSymbol.svg?react"
 import css from '@styles/ControllPanel.module.css';
 import { prefixs } from "@utils/constant";
 
-export default ({current}) => {
 
+export default ({current}) => {
+  console.log(current)
+  
   return (
     <div className={css.controllPanel}>
       <div className={css.prefixList}>
