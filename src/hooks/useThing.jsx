@@ -10,9 +10,10 @@ export default () => {
   const init = (prefix = 0) => {
     api.get('/thing', {params: {prefix: prefix, page: 0}})
     .then(response => {
+      if (response?.data?.length < 3) return;
       setData(response.data);
       setCurrent({prefix: prefix, item: 0});
-      setLimit([prefix, prefix]);
+      setLimit([0, 0]);
     })
   }
 

@@ -29,17 +29,17 @@ export default () => {
   )
 }
 
-const Thing = ({thing, root, fetch}) => {
+const Thing = ({thing, root}) => {
   const grad = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  const scale = (10 ** thing.prefix * Number(thing.quantity)) / (10 ** root.prefix * Number(root.quantity));
+  const scale = (10 ** thing.prefix * Number(thing?.quantity)) / (10 ** root?.prefix * Number(root?.quantity));
 
   return (
     <div className={css.thing}>
-      <Link to={`/thing/${thing.thingId}`}>
-        <img className={css.thingImage} src={`${API_SERVER_URL}/thing/${thing.thingId}/image`} alt='' style={{transform: `scale(${scale})`}} />
+      <Link to={`/thing/${thing?.thingId}`}>
+        <img className={css.thingImage} src={`${API_SERVER_URL}/thing/${thing?.thingId}/image`} alt='' style={{transform: `scale(${scale})`}} />
       </Link>
-      <h3>{thing.title}</h3>
-      <p>{`${thing.quantity} ${prefixs[thing.prefix + 10].prefix}m`}</p>
+      <h3>{thing?.title}</h3>
+      <p>{`${thing?.quantity} ${prefixs[thing?.prefix + 10].prefix}m`}</p>
       <div className={css.grads}>
         {grad.map((v, i)=>(<div key={i} className={css.grad}></div>))}
       </div>

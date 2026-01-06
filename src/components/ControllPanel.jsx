@@ -11,7 +11,7 @@ export default ({current, init}) => {
     <div className={css.controllPanel}>
       <div className={css.prefixList}>
         {prefixs.slice(current + 7, current + 14).map((v, i)=>(
-          <button className={css.prefix} onClick={() => init()} key={i}>
+          <button className={css.prefix} onClick={async () => init(current - (3 - i))} key={i}>
             <h3>{`${v.prefix}m (10^${v.exponent})`}</h3>
             <p>{`${v.name}미터`}</p>
           </button>
