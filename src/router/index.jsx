@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '@pages/Home';
-import { LogIn, LogOut, Preregister, SignUp, Thing } from '@components/Modal';
+import { LogIn, LogOut, Preregister, SignUp, Thing, ThingCreate} from '@components/Modal';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp />
+      },
+      {
+        path: '/thing',
+        element: <ThingCreate />
       },
       {
         path: '/thing/:thingId',

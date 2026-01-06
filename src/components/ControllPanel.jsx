@@ -1,6 +1,7 @@
 import PlusSymbol from "@assets/PlusSymbol.svg?react"
 import RefreshSymbol from "@assets/RefreshSymbol.svg?react"
 import css from '@styles/ControllPanel.module.css';
+import { Link } from "react-router-dom";
 import { prefixs } from "@utils/constant";
 
 
@@ -18,7 +19,7 @@ export default ({current, init}) => {
       </div>
       <div className={css.buttonList}>
         <button className={css.button} onClick={async()=>init(current)}><RefreshSymbol /></button>
-        <button className={css.button}><PlusSymbol /></button>
+        <Link className={css.button} to={'/thing'}><PlusSymbol /></Link>
       </div>
     </div>
   )

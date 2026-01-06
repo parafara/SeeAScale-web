@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.input {
+  width: 24rem;
+  padding: 0.75rem;
+  border: 1px solid var(--gray);
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.input::placeholder {
+  color: var(--gray);
+}
+
+.validInput {
+  border-color: var(--blue-3);
+}
+
+.invalidInput {
+  border-color: var(--red-3);
+}
+
+.submitButton {
+  width: 24rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid var(--gray);
+  background: var(--light-gray);
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
