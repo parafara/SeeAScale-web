@@ -11,6 +11,8 @@ export default () => {
     api.get('/thing', {params: {prefix: prefix, page: 0}})
     .then(response => {
       setData(response.data);
+      setCurrent({prefix: prefix, item: 0});
+      setLimit([prefix, prefix]);
     })
   }
 
@@ -49,9 +51,5 @@ export default () => {
     }
   }
 
-  const getCurrentPrefix = () => {
-    return data[current.item]?.prefix;
-  }
-
-  return {data, current, init, moveRight, moveLeft, fetchThing, getCurrentPrefix};
+  return {data, current, init, moveRight, moveLeft, fetchThing};
 }

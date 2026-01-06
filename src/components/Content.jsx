@@ -7,7 +7,7 @@ import ControllPanel from '@components/ControllPanel';
 import { API_SERVER_URL, prefixs } from '@utils/constant.jsx';
 
 export default () => {
-  const {current, data, init, moveRight, moveLeft, getCurrentPrefix} = useThing();
+  const {current, data, init, moveRight, moveLeft} = useThing();
 
   useEffect(() => {init();}, []);
   
@@ -24,7 +24,7 @@ export default () => {
           <ArrowSymbol style={{transform: 'scaleX(-1)'}} />
         </button>
       </main>
-      <ControllPanel current={data[current.item]?.prefix ?? 0} />
+      <ControllPanel current={data[current.item]?.prefix ?? 0} init={init} />
     </>
   )
 }
